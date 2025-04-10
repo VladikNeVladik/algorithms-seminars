@@ -14,7 +14,7 @@ main:
 
     ; Вывод 32-битного шестнадцатеричного числа.
     ; io_print_hex принимает аргумент через eax
-    mov eax, [dword var_c] ; eax = *var_c
+    mov eax, dword [var_c] ; eax = *var_c
     call io_print_hex
     call io_newline
 

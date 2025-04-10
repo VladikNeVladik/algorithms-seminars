@@ -32,13 +32,14 @@ LDFLAGS = \
 #-------
 
 SOURCES = \
-	src/main.asm \
-	src/macro.c
+	src/benchmark.c \
+	src/macro.c \
+	src/main.asm
 
 OBJECTS_HALFWAY_DONE = $(SOURCES:src/%.c=build/%.o)
 OBJECTS              = $(OBJECTS_HALFWAY_DONE:src/%.asm=build/%.o)
 
-EXECUTABLE = build/helloworld
+EXECUTABLE = build/arithmetic_ops
 
 #----------------
 # Скрипты сборки
@@ -47,7 +48,7 @@ EXECUTABLE = build/helloworld
 all: $(EXECUTABLE) $(SOURCES)
 
 $(EXECUTABLE): $(OBJECTS) Makefile
-	$(CC) $(LDFLAGS) $(OBJECTS) -o $@ -lm
+	$(CC) $(LDFLAGS) $(OBJECTS) -o $@
 
 build/%.o: src/%.c
 	@mkdir -p build
