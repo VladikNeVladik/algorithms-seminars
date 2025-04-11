@@ -69,7 +69,7 @@ run: $(EXECUTABLE)
 #------------------------
 
 install-deps:
-	@printf "Execute \"sudo aptinstall build-essential gcc-i386-linux-gnueabi nasm qemu-system gdb\""
+	@printf "Execute \"sudo apt install build-essential gcc-i386-linux-gnueabi nasm qemu-system gdb\""
 	@printf "Or it's equivalent for your system"
 
 #------------------

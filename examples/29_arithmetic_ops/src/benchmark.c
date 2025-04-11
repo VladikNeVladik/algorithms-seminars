@@ -42,7 +42,7 @@ void assembled_example_function()
     var_32bit *= 10;
     var_32bit /= 5;
 
-    // Вывод реузльтатов арифметических операций.
+    // Вывод результатов арифметических операций.
     io_print_hex(var_08bit);
     io_newline();
     io_print_hex(var_16bit);
