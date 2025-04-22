@@ -85,9 +85,9 @@ gdb: $(EXECUTABLE)
 	$(GDB) $(GDB_FLAGS)
 
 disassemble:
-	objdump --disassemble=example_conditionals --visualize-jumps=color $(EXECUTABLE)
-	objdump --disassemble=example_ifelse_chain --visualize-jumps=color $(EXECUTABLE)
-	objdump --disassemble=example_switch       --visualize-jumps=color $(EXECUTABLE)
+	objdump -M intel --disassemble=example_conditionals --visualize-jumps=color $(EXECUTABLE)
+	objdump -M intel --disassemble=example_ifelse_chain --visualize-jumps=color $(EXECUTABLE)
+	objdump -M intel --disassemble=example_switch       --visualize-jumps=color $(EXECUTABLE)
 
 
 

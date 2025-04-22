@@ -1,14 +1,14 @@
-#--------------------
-# Набор инструментов
-#--------------------
+#-----------
+# Toolchain
+#-----------
 
 CC  = x86_64-linux-gnu-gcc
 AS  = nasm
 GDB = gdb
 
-#----------------------------------
-# Флаги компилятора и компоновщика
-#----------------------------------
+#-----------------------
+# Compiler/linker flags
+#-----------------------
 
 CFLAGS = \
 	-m32 \
@@ -28,7 +28,7 @@ LDFLAGS = \
 	-g
 
 #-------
-# Файлы
+# Files
 #-------
 
 SOURCES = \
@@ -39,11 +39,11 @@ SOURCES = \
 OBJECTS_HALFWAY_DONE = $(SOURCES:src/%.c=build/%.o)
 OBJECTS              = $(OBJECTS_HALFWAY_DONE:src/%.asm=build/%.o)
 
-EXECUTABLE = build/64bit_arithmetics
+EXECUTABLE = build/cycles
 
-#----------------
-# Скрипты сборки
-#----------------
+#---------------
+# Build scripts
+#---------------
 
 all: $(EXECUTABLE) $(SOURCES)
 
@@ -61,20 +61,17 @@ build/%.o: src/%.asm
 clean:
 	rm -rf build
 
-run: $(EXECUTABLE)
-	./$(EXECUTABLE)
-
-#------------------------
-# Установка зависимостей
-#------------------------
+#---------------------
+# Packet dependencies
+#---------------------
 
 install-deps:
 	@printf "Execute \"sudo apt install build-essential gcc-i386-linux-gnueabi nasm qemu-system gdb\""
 	@printf "Or it's equivalent for your system"
 
-#------------------
-# Запуск отладчика
-#------------------
+#----------------------
+# Emulator interaction
+#----------------------
 
 GDB_FLAGS = \
 	--eval-command="set architecture i386" \
@@ -87,11 +84,7 @@ GDB_FLAGS = \
 gdb: $(EXECUTABLE)
 	$(GDB) $(GDB_FLAGS)
 
-#----------------------
-# Запуск дизассемблера
-#----------------------
-
 disassemble:
-	objdump -M intel --disassemble=assembled_example_function --visualize-jumps=color $(EXECUTABLE)
+	objdump -M intel --disassemble=example_loop --visualize-jumps=color $(EXECUTABLE)
 
 .PHONY: all clean qemu gdb
