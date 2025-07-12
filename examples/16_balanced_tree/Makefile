@@ -37,8 +37,7 @@ run: build/test
 	@mkdir -p res
 	@./build/test
 
-clean:
-	@rm -rf res
-	@rm -rf build
+.PHONY: run
 
-.PHONY: run clean
+# Подключаем тестовую инфраструктуру.
+include ../../homework/common.mk

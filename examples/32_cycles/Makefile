@@ -58,9 +58,6 @@ build/%.o: src/%.asm
 	@mkdir -p build
 	$(AS) $(ASFLAGS) $< -o $@
 
-clean:
-	rm -rf build
-
 #---------------------
 # Packet dependencies
 #---------------------
@@ -88,3 +85,6 @@ disassemble:
 	objdump -M intel --disassemble=example_loop --visualize-jumps=color $(EXECUTABLE)
 
 .PHONY: all clean qemu gdb
+
+# Подключаем тестовую инфраструктуру.
+include ../../homework/common.mk

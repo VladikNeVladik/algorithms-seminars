@@ -36,7 +36,7 @@ build/test: test.c $(INCLUDES)
 run: build/test
 	@./build/test
 
-clean:
-	@rm -rf build
+.PHONY: run
 
-.PHONY: run clean
+# Подключаем тестовую инфраструктуру.
+include ../../homework/common.mk

@@ -58,9 +58,6 @@ build/%.o: src/%.asm
 	@mkdir -p build
 	$(AS) $(ASFLAGS) $< -o $@
 
-clean:
-	rm -rf build
-
 run: $(EXECUTABLE)
 	./$(EXECUTABLE)
 
@@ -95,3 +92,6 @@ disassemble:
 	objdump -M intel --disassemble=assembled_example_function --visualize-jumps=color $(EXECUTABLE)
 
 .PHONY: all clean qemu gdb
+
+# Подключаем тестовую инфраструктуру.
+include ../../homework/common.mk

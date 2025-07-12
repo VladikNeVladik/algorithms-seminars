@@ -1,5 +1,4 @@
 # Copyright 2024 Vladislav Aleinik
-# The simplest Makefile possible.
 
 CFLAGS = \
 	-Wall \
@@ -18,7 +17,11 @@ break: build/password
 	printf 01234567890123456789012345678901_123456789ABCDE\\x00 | ./build/password
 	printf 01234567890123456789012345678901_123456789ABCDE\\x01 | ./build/password
 
-clean:
-	@rm -rf build
+.PHONY: run
 
-.PHONY: run clean
+# Подключаем тестовую инфраструктуру.
+PROGRAM=password
+PROGRAM_NAME=09_password
+TESTS = 00
+
+include ../../homework/common.mk

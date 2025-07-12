@@ -1,14 +1,17 @@
 # Copyright 2024 Vladislav Aleinik
-# The simplest Makefile possible.
 
 build/square: square.c
 	@mkdir -p build
-	gcc square.c -Wall -Werror -o build/square -lm
+	@gcc square.c -Wall -Werror -o build/square -lm
 
 run: build/square
 	@./build/square
 
-clean:
-	@rm -rf build
+.PHONY: run
 
-.PHONY: run clean
+# Подключаем тестовую инфраструктуру.
+PROGRAM=square
+PROGRAM_NAME=06_square_equation
+TESTS = 00
+
+include ../../homework/common.mk

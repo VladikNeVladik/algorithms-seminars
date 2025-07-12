@@ -1,14 +1,17 @@
 # Copyright 2024 Vladislav Aleinik
-# The simplest Makefile possible.
 
 build/operations: operations.c
 	@mkdir -p build
-	gcc operations.c -Wall -Werror -o build/operations
+	@gcc operations.c -Wall -Werror -o build/operations
 
 run: build/operations
 	@./build/operations
 
-clean:
-	@rm -rf build
+.PHONY: run
 
-.PHONY: run clean
+# Подключаем тестовую инфраструктуру.
+PROGRAM=operations
+PROGRAM_NAME=04_operations
+TESTS = 00
+
+include ../../homework/common.mk

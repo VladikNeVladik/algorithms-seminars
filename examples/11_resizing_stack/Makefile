@@ -31,12 +31,16 @@ INCLUDES=\
 
 build/test: test.c $(INCLUDES)
 	@mkdir -p build
-	gcc test.c ${CFLAGS} -o build/test
+	@gcc test.c ${CFLAGS} -o build/test
 
 run: build/test
 	@./build/test
 
-clean:
-	@rm -rf build
+.PHONY: run
 
-.PHONY: run clean
+# Подключаем тестовую инфраструктуру.
+PROGRAM=test
+PROGRAM_NAME=11_resizing_stack
+TESTS = 00
+
+include ../../homework/common.mk

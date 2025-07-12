@@ -58,9 +58,6 @@ build/%.o: src/%.asm
 	@mkdir -p build
 	$(AS) $(ASFLAGS) $< -o $@
 
-clean:
-	rm -rf build
-
 run: $(EXECUTABLE)
 	./$(EXECUTABLE)
 
@@ -88,3 +85,6 @@ gdb: $(EXECUTABLE)
 	$(GDB) $(GDB_FLAGS)
 
 .PHONY: all clean qemu gdb
+
+# Подключаем тестовую инфраструктуру.
+include ../../homework/common.mk

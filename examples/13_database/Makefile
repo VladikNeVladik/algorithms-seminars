@@ -32,11 +32,11 @@ INCLUDES=\
 
 build/create: create.c $(INCLUDES)
 	@mkdir -p build res
-	gcc create.c ${CFLAGS} -o build/create
+	@gcc create.c ${CFLAGS} -o build/create
 
 build/search: search.c $(INCLUDES)
 	@mkdir -p build
-	gcc search.c ${CFLAGS} -o build/search
+	@gcc search.c ${CFLAGS} -o build/search
 
 create: build/create
 	@mkdir -p res
@@ -46,8 +46,11 @@ search: build/search
 	@mkdir -p res
 	@./build/search
 
-clean:
-	@rm -rf res
-	@rm -rf build
-
 .PHONY: create search clean
+
+# Подключаем тестовую инфраструктуру.
+PROGRAM=search
+PROGRAM_NAME=13_database
+TESTS = 00
+
+include ../../homework/common.mk

@@ -9,7 +9,7 @@ CC=gcc
 endif
 
 # Compilation flags:
-CFLAGS += \
+CFLAGS_TEST = \
 	-O2                          \
 	-Werror                      \
 	-Wformat-security            \
@@ -33,12 +33,12 @@ CFLAGS += \
 	-lm
 
 ifndef NDEBUG
-CFLAGS += -g
+CFLAGS_TEST += -g
 endif
 
 # The fun stuff:
 ifndef NOSAN
-CFLAGS += \
+CFLAGS_TEST += \
 	-fsanitize=address    \
 	-fsanitize=leak       \
 	-fsanitize=undefined  \
@@ -83,6 +83,10 @@ ifndef MAX_MEMORY
 MAX_MEMORY=64000000# 64MiB
 endif
 
+ifndef PROGRAM_NAME
+PROGRAM_NAME=$(PROGRAM)
+endif
+
 verify-input-program:
 	@if [ -z "$(PROGRAM)" ]; then \
 		printf "$(BRED)Error$(BYELLOW): define program as $(BCYAN)PROGRAM=program$(RESET)\n"; \
@@ -112,7 +116,7 @@ test-bin-io: verify-input-program $(PROGRAM_BIN) $(OUTPUTS_BIN_IO) FORCE
 
 build/%.ans.test: tests/%.dat $(PROGRAM_BIN) FORCE
 	@mkdir -p build
-	@printf "$(BYELLOW)Run test $(BCYAN)$*$(BYELLOW) for solution $(BCYAN)$(PROGRAM)$(RESET)\n"
+	@printf "$(BYELLOW)Run test $(BCYAN)$*$(BYELLOW) for solution $(BCYAN)$(PROGRAM_NAME)$(RESET)\n"
 	@$(PROGRAM_BIN) < $< > $@ | cat
 	@if [ ! -f tests/$*.ans ]; then \
 		printf $(VERDICT_INAPT); \
@@ -124,7 +128,7 @@ build/%.ans.test: tests/%.dat $(PROGRAM_BIN) FORCE
 
 build/%.ans.time: tests/%.dat $(PROGRAM_BIN) FORCE
 	@mkdir -p build
-	@printf "$(BYELLOW)Measure time on $(BCYAN)$*$(BYELLOW) for solution $(BCYAN)$(PROGRAM)$(RESET)\n"
+	@printf "$(BYELLOW)Measure time on $(BCYAN)$*$(BYELLOW) for solution $(BCYAN)$(PROGRAM_NAME)$(RESET)\n"
 	@$(TIME_CMD) --quiet --format=$(TIME_FORMAT) $(PROGRAM_BIN) < $< > $@ | cat
 	@if [ ! -f tests/$*.ans ]; then \
 		printf $(VERDICT_INAPT); \
@@ -137,7 +141,7 @@ build/%.ans.time: tests/%.dat $(PROGRAM_BIN) FORCE
 build/%.ans.memory: tests/%.dat $(PROGRAM_BIN) FORCE
 	@mkdir -p build
 	@printf "$(BYELLOW)Limit memory ($(BCYAN)$(MAX_MEMORY)$(BYELLOW))"\
-	" on $(BCYAN)$*$(BYELLOW) for \033[1;36m$(PROGRAM)$(RESET)\n"
+	" on $(BCYAN)$*$(BYELLOW) for \033[1;36m$(PROGRAM_NAME)$(RESET)\n"
 	@prlimit --data=$(MAX_MEMORY) $(PROGRAM_BIN) < $< > $@ | cat
 	@if [ ! -f tests/$*.ans ]; then \
 		printf $(VERDICT_INAPT); \
@@ -149,7 +153,7 @@ build/%.ans.memory: tests/%.dat $(PROGRAM_BIN) FORCE
 
 build/%.ans.io-bin: tests/%.dat $(PROGRAM_BIN) FORCE
 	@mkdir -p build
-	@printf "$(BYELLOW)Run test $(BCYAN)$*$(BYELLOW) for solution $(BCYAN)$(PROGRAM)$(RESET)\n"
+	@printf "$(BYELLOW)Run test $(BCYAN)$*$(BYELLOW) for solution $(BCYAN)$(PROGRAM_NAME)$(RESET)\n"
 	@$(PROGRAM_BIN) < $< | cat
 	@mv output.bin $@
 	@if [ ! -f tests/$*.ans ]; then \
@@ -162,7 +166,7 @@ build/%.ans.io-bin: tests/%.dat $(PROGRAM_BIN) FORCE
 
 build/%.ans.bin-io: tests/%.dat $(PROGRAM_BIN) FORCE
 	@mkdir -p build
-	@printf "$(BYELLOW)Run test $(BCYAN)$*$(BYELLOW) for solution $(BCYAN)$(PROGRAM)$(RESET)\n"
+	@printf "$(BYELLOW)Run test $(BCYAN)$*$(BYELLOW) for solution $(BCYAN)$(PROGRAM_NAME)$(RESET)\n"
 	@cp tests/$*.dat input.bin
 	@$(PROGRAM_BIN) > $@ | cat
 	@rm input.bin
@@ -181,7 +185,7 @@ build/%.ans.bin-io: tests/%.dat $(PROGRAM_BIN) FORCE
 build/%: %.c FORCE
 	@mkdir -p build
 	@printf "$(BYELLOW)Building solution \033[1;36m$*$(RESET)\n"
-	@$(CC) $< $(CFLAGS) -o $@
+	@$(CC) $< $(CFLAGS_TEST) -o $@
 
 clean: FORCE
 	@rm -rf build
