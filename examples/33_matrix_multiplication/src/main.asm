@@ -28,7 +28,7 @@ global main
 main:
     ; Дополнительно вызываем функцию для сравнения алгоритмов перемножения матриц.
     ; Выравнивание стека = "нам повезёт!".
-    call compare_matrix_multiplication_time
+    ; call compare_matrix_multiplication_time
 
     ;==========================;
     ; Инициализируем матрицу A ;

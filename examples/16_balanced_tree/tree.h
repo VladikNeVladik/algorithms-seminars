@@ -868,7 +868,7 @@ void tree_balance(Tree* tree, Node_t unbalanced_id)
 
         tree_print(tree);
         printf("\n");
-        sleep(1);
+        // sleep(1);
 
         // Переходим к рассмотрению родительского узла.
         unbalanced_id = parent_id;

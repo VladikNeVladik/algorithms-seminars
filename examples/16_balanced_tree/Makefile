@@ -31,14 +31,17 @@ INCLUDES=\
 
 build/test: test.c $(INCLUDES)
 	@mkdir -p build
-	gcc test.c ${CFLAGS} -o build/test
+	@gcc test.c ${CFLAGS} -o build/test
 
 run: build/test
 	@mkdir -p res
 	@./build/test
 
-clean:
-	@rm -rf res
-	@rm -rf build
+.PHONY: run
 
-.PHONY: run clean
+# Подключаем тестовую инфраструктуру.
+PROGRAM=test
+PROGRAM_NAME=16_balanced_tree
+TESTS = 00
+
+include ../../homework/common.mk

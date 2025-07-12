@@ -51,25 +51,22 @@ EXECUTABLE_EQUIV = build/equivalent
 all: $(EXECUTABLE) $(EXECUTABLE_EQUIV) $(SOURCES)
 
 $(EXECUTABLE): $(OBJECTS) Makefile
-	$(CC) $(LDFLAGS) $(OBJECTS) -o $@
+	@$(CC) $(LDFLAGS) $(OBJECTS) -o $@
 
 $(EXECUTABLE_EQUIV): $(OBJECTS_EQUIV) Makefile
-	$(CXX) $(CXXFLAGS) $< -o $@
+	@$(CXX) $(CXXFLAGS) $< -o $@
 
 build/%.o: src/%.cpp
 	@mkdir -p build
-	$(CXX) $(CXXFLAGS) -c $< -o $@
+	@$(CXX) $(CXXFLAGS) -c $< -o $@
 
 build/%.o: src/%.c
 	@mkdir -p build
-	$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 build/%.o: src/%.asm
 	@mkdir -p build
-	$(AS) $(ASFLAGS) $< -o $@
-
-clean:
-	rm -rf build
+	@$(AS) $(ASFLAGS) $< -o $@
 
 #----------------------
 # Emulator interaction
@@ -87,3 +84,10 @@ gdb: $(EXECUTABLE)
 	$(GDB) $(GDB_FLAGS)
 
 .PHONY: all clean qemu gdb
+
+# Подключаем тестовую инфраструктуру.
+PROGRAM=apply
+PROGRAM_NAME=35_parameter_lists
+TESTS = 00
+
+include ../../homework/common.mk

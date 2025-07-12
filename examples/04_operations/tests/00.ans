@@ -1,0 +1,20 @@
+a      = 00001010
+b      = 00010111
+c      = 00000010
+~a     = 11110101
+a  | b = 00011111
+a  & b = 00000010
+a  ^ b = 00011101
+a << c = 00101000
+a >> c = 00000010
+
++8 / +3 =  2, +8 % +3 =  2
++8 / -3 = -2, +8 % -3 =  2
+-8 / +3 = -2, -8 % +3 = -2
+-8 / -3 =  2, -8 % -3 = -2
+
+Side effect "A"
+Conditional operator return value: A
+Side effect "A"
+Side effect "B"
+Comma operator return value: B

@@ -71,8 +71,12 @@ int main(void)
             double seconds = ticks_delta / CLOCKS_PER_SEC;
 
             // Печатаем время на наполнение стека элементов
-            printf("Push[%9lu, %9lu]: %10.6lfs\n",
-                bench_i, bench_i + BENCHMARK_STEP - 1U, seconds);
+            // printf("Push[%9lu, %9lu]: %10.6lfs\n",
+            //     bench_i, bench_i + BENCHMARK_STEP - 1U, seconds);
+
+            (void) seconds;
+            printf("Push[%9lu, %9lu]: OK\n",
+                bench_i, bench_i + BENCHMARK_STEP - 1U);
         }
 
         // Извлекаем все элементы из стека
@@ -105,8 +109,12 @@ int main(void)
             double seconds = ticks_delta / CLOCKS_PER_SEC;
 
             // Печатаем время на извлечение элементов из стека
-            printf("Pop [%9lu, %9lu]: %10.6lfs\n",
-                bench_i - 1U, bench_i - BENCHMARK_STEP, seconds);
+            // printf("Pop [%9lu, %9lu]: %10.6lfs\n",
+            //     bench_i - 1U, bench_i - BENCHMARK_STEP, seconds);
+
+            (void) seconds;
+            printf("Pop [%9lu, %9lu]: OK\n",
+                bench_i - 1U, bench_i - BENCHMARK_STEP);
         }
 
         // Освобождение ресурсов стека

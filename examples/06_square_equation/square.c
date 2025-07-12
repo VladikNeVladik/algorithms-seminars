@@ -64,7 +64,7 @@ bool double_equal(double first, double second, double epsilon)
 // - Значение по указателю x0 перезаписывается, если возвращаемое значение равно ONE_ROOT или TWO_ROOTS.
 // - Значение по указателю x1 перезаписывается, если возвращаемое значение равное TWO_ROOTS.
 //==================================================================================================
-unsigned solve_square(double a, double b, double c)
+unsigned solve_square(double a, double b, double c, double* x0, double* x1)
 {
     // Проверяем степень уравнения
     if (double_equal(a, 0.0, EPSILON))
@@ -84,7 +84,7 @@ unsigned solve_square(double a, double b, double c)
         }
 
         // Линейное уравнение имеет одно решение
-        x0 = -c / b;
+        *x0 = -c / b;
         return ONE_ROOT;
     }
 
@@ -99,15 +99,15 @@ unsigned solve_square(double a, double b, double c)
     }
     else if (double_equal(D, 0.0, EPSILON))
     { // У уравнения ровно один корень
-        x0 = -b / 2.0 / a;
+        *x0 = -b / 2.0 / a;
         return ONE_ROOT;
     }
     else
     { // У уравнения ровно два действительных решения
         double sqrtD = sqrt(D);
 
-        x0 = (-b - sqrtD) / 2.0 / a;
-        x1 = (-b + sqrtD) / 2.0 / a;
+        *x0 = (-b - sqrtD) / 2.0 / a;
+        *x1 = (-b + sqrtD) / 2.0 / a;
         return TWO_ROOTS;
     }
 }
@@ -127,8 +127,11 @@ int main(void)
     printf("C = ");
     scanf("%lf", &c);
 
+    // Корни квадартного уравнения.
+    double x0, x1;
+
     // Вычисляем корни и печатаем корни квадратного уравнения:
-    unsigned num_roots = solve_square(a, b, c);
+    unsigned num_roots = solve_square(a, b, c, &x0, &x1);
 
     switch (num_roots)
     {

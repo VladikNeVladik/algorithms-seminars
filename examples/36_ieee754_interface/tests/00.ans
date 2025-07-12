@@ -1,0 +1,81 @@
+
+flt_a = 1.000000, sizeof = 4
+flt_a = 00111111 10000000 00000000 00000000 
+dbl_b = 1.000000, sizeof = 8
+dbl_b = 00111111 11110000 00000000 00000000 00000000 00000000 00000000 00000000 
+ldb_c = 1.000000, sizeof = 12
+
+Not a number:       nan
+Not a number check: OK
+Infinity check:     OK
+
+Sum of power series for base: 1.100000
+    Min-to-max summation:     137796.406250
+    Max-to-min summation:     137796.375000
+    Analytical result:        137796.390625
+
+Sum of power series for base: 1.200000
+    Min-to-max summation:     414091392.000000
+    Max-to-min summation:     414091264.000000
+    Analytical result:        414091424.000000
+
+Sum of power series for base: 1.300000
+    Min-to-max summation:     826449395712.000000
+    Max-to-min summation:     826449461248.000000
+    Analytical result:        826449395712.000000
+
+Sum of power series for base: 1.400000
+    Min-to-max summation:     1025044813709312.000000
+    Max-to-min summation:     1025044813709312.000000
+    Analytical result:        1025044813709312.000000
+
+Sum of power series for base: 1.500000
+    Min-to-max summation:     813122383844999168.000000
+    Max-to-min summation:     813122383844999168.000000
+    Analytical result:        813122383844999168.000000
+
+Sum of power series for base: 1.600000
+    Min-to-max summation:     430375591234313912320.000000
+    Max-to-min summation:     430375626418686001152.000000
+    Analytical result:        430375591234313912320.000000
+
+Sum of power series for base: 1.700000
+    Min-to-max summation:     158414639310313971777536.000000
+    Max-to-min summation:     158414585267118443331584.000000
+    Analytical result:        158414639310313971777536.000000
+
+Sum of power series for base: 1.800000
+    Min-to-max summation:     42088381814794873892503552.000000
+    Max-to-min summation:     42088372591422837037727744.000000
+    Analytical result:        42088377203108855465115648.000000
+
+Sum of power series for base: 1.900000
+    Min-to-max summation:     8339110093529055459146727424.000000
+    Max-to-min summation:     8339108912937434741735424000.000000
+    Analytical result:        8339110683824865817852379136.000000
+
+Sum of power series for base: 2.000000
+    Min-to-max summation:     1267650600228229401496703205376.000000
+    Max-to-min summation:     1267650600228229401496703205376.000000
+    Analytical result:        1267650600228229401496703205376.000000
+
+Current exceptions raised:  FE_DIVBYZERO FE_INEXACT FE_INVALID
+Current rounding method:    FE_TONEAREST
+
++11.5 -> +12.0
+-12.5 -> -12.0
+Current exceptions raised:  FE_DIVBYZERO FE_INEXACT FE_INVALID
+Current rounding method:    FE_TONEAREST
+
+1.0/0.0 = inf
++11.5 -> +11.0
+-12.5 -> -13.0
+Current exceptions raised:  FE_DIVBYZERO FE_INEXACT
+Current rounding method:    FE_DOWNWARD
+
+Current exceptions raised:  FE_DIVBYZERO FE_INEXACT FE_INVALID
+Current rounding method:    FE_TONEAREST
+
+1.0/0.0 = inf
+[1;31m[FPU EXCEPTION] Division by zero
+[0m

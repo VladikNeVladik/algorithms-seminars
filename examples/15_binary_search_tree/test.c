@@ -17,6 +17,9 @@ int main(void)
 
     Key_t saved[NUM_INSERTED];
 
+    // Задаём семя для генератора случайных чисел.
+    srand(100500);
+
     for (size_t iteration_i = 0U; iteration_i < NUM_INSERTED; ++iteration_i)
     {
         Key_t key = rand();
@@ -29,8 +32,8 @@ int main(void)
         tree_set(&search_db, key, value);
 
         // Печатаем содержимое дерева.
-        // tree_print(&search_db);
-        // printf("\n");
+        tree_print(&search_db);
+        printf("\n");
         // sleep(1);
 
         if (iteration_i < NUM_INSERTED)
@@ -67,7 +70,7 @@ int main(void)
         // Печатаем содержимое дерева.
         tree_print(&search_db);
         printf("\n");
-        sleep(1);
+        // sleep(1);
 
         bool removed;
         tree_remove(&search_db, search_key, &removed_value, &removed);

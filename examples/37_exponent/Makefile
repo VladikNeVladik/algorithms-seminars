@@ -37,7 +37,7 @@ SOURCES = \
 OBJECTS_HALFWAY_DONE = $(SOURCES:src/%.c=build/%.o)
 OBJECTS              = $(OBJECTS_HALFWAY_DONE:src/%.asm=build/%.o)
 
-EXECUTABLE = build/x87-matrix-mul
+EXECUTABLE = build/x87-exponent
 
 #---------------
 # Build scripts
@@ -46,18 +46,15 @@ EXECUTABLE = build/x87-matrix-mul
 all: $(EXECUTABLE) $(SOURCES)
 
 $(EXECUTABLE): $(OBJECTS) Makefile
-	$(CC) $(LDFLAGS) $(OBJECTS) -o $@ -lm
+	@$(CC) $(LDFLAGS) $(OBJECTS) -o $@ -lm
 
 build/%.o: src/%.c
 	@mkdir -p build
-	$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 build/%.o: src/%.asm
 	@mkdir -p build
-	$(AS) $(ASFLAGS) $< -o $@
-
-clean:
-	rm -rf build
+	@$(AS) $(ASFLAGS) $< -o $@
 
 run: $(EXECUTABLE)
 	./$(EXECUTABLE)
@@ -78,3 +75,10 @@ gdb: $(EXECUTABLE)
 	$(GDB) $(GDB_FLAGS)
 
 .PHONY: all clean qemu gdb
+
+# Подключаем тестовую инфраструктуру.
+PROGRAM=x87-exponent
+PROGRAM_NAME=37_exponent
+TESTS = 00
+
+include ../../homework/common.mk

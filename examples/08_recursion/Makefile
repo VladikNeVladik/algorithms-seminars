@@ -25,6 +25,9 @@ CFLAGS=\
 	-std=gnu99                   \
 	-lm
 
+build/fibs: fibs.c
+	@# Do nothing
+
 # Different build scenarios:
 cycle: fibs.c
 	@mkdir -p build
@@ -39,10 +42,14 @@ good: fibs.c
 	@gcc fibs.c ${CFLAGS} -DFIBS_GOOD_RECURSION -o build/fibs
 
 # Run scenarios:
-run: build/fibs
+run:
 	@./build/fibs
 
-clean:
-	@rm -rf build
+.PHONY: run
 
-.PHONY: run clean
+# Подключаем тестовую инфраструктуру.
+PROGRAM=fibs
+PROGRAM_NAME=08_recursion-$(FLAVOUR)
+TESTS = 00
+
+include ../../homework/common.mk

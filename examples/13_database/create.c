@@ -65,7 +65,7 @@ int main(void)
         strcpy(db.entries[db_i].value, hostnames[db_i]);
 
         // Выводим на экран содержимое строки БД
-        printf("%-10s 192.168.0.%zu\n", hostnames[db_i], db_i + 1);
+        // printf("%-10s 192.168.0.%zu\n", hostnames[db_i], db_i + 1);
     }
 
     // Открываем файл на запись в бинарном виде

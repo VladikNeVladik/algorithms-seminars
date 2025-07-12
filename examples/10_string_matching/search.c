@@ -249,7 +249,7 @@ const char* strstr_knuth_morris_pratt(const char* haystack, const char* needle)
 //=============================//
 
 // Имя файла, в котором производится поиск
-const char* HAYSTACK_FILENAME = "res/book-war-and-peace.txt";
+const char* HAYSTACK_FILENAME = "res/warandpeace.txt";
 
 #define NUM_ITERATIONS 10
 
@@ -360,10 +360,15 @@ int main(void)
         // Начало измеряемого отрезка времени
         clock_t ticks_start = clock();
 
+        printf("%.60s\n", algorithm_names[alg_i]);
+
         for (size_t word_i = 0; word_i < sizeof(needles) / sizeof(const char*); ++word_i)
         {
             // Исползуем word_i-ое слово из корпуса
             const char* needle = needles[word_i];
+
+            // Количество вхождений.
+            size_t num_matches = 0;
 
             for (size_t iterations = 0; iterations < NUM_ITERATIONS; ++iterations)
             {
@@ -379,8 +384,12 @@ int main(void)
 
                     // Готовимся к поиску следующего вхождения
                     cur += 1;
+                    // Учитываем вхождение.
+                    num_matches++;
                 }
             }
+
+            printf("                                                                      - %zu\r%.120s\n", num_matches/NUM_ITERATIONS, needle);
         }
 
         // Конец измеряемого отрезка времени
@@ -389,7 +398,8 @@ int main(void)
         double ticks_delta = ticks_end - ticks_start;
         double seconds = ticks_delta / CLOCKS_PER_SEC;
 
-        printf("                            %10.2lfs\r%.60s:\n", seconds, algorithm_names[alg_i]);
+        (void) seconds;
+        // printf("                            %10.2lfs\r%.60s:\n", seconds, algorithm_names[alg_i]);
     }
 
     return EXIT_SUCCESS;

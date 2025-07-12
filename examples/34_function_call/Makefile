@@ -48,18 +48,15 @@ EXECUTABLE = build/call
 all: $(EXECUTABLE) $(SOURCES)
 
 $(EXECUTABLE): $(OBJECTS) Makefile
-	$(CC) $(LDFLAGS) $(OBJECTS) -o $@
+	@$(CC) $(LDFLAGS) $(OBJECTS) -o $@
 
 build/%.o: src/%.c
 	@mkdir -p build
-	$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 build/%.o: src/%.asm
 	@mkdir -p build
-	$(AS) $(ASFLAGS) $< -o $@
-
-clean:
-	rm -rf build
+	@$(AS) $(ASFLAGS) $< -o $@
 
 #----------------------
 # Emulator interaction
@@ -77,3 +74,10 @@ gdb: $(EXECUTABLE)
 	$(GDB) $(GDB_FLAGS)
 
 .PHONY: all clean qemu gdb
+
+# Подключаем тестовую инфраструктуру.
+PROGRAM=call
+PROGRAM_NAME=34_function_call
+TESTS = 00
+
+include ../../homework/common.mk

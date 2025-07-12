@@ -25,14 +25,27 @@ CFLAGS=\
 	-std=gnu99                   \
 	-lm
 
-build/search: search.c
+WAR_AND_PEACE_URL="https://gist.githubusercontent.com/romaklimenko/c95f3a864828f7f034b7a33d1676e420/raw/55f9027799b5b3c67e2f7cb3d6a7154f707ff08a/warandpeace.txt"
+HAYSTACK_FILE=res/warandpeace.txt
+
+build/search: search.c $(HAYSTACK_FILE)
 	@mkdir -p build
 	@gcc search.c ${CFLAGS} -o build/search
+
+$(HAYSTACK_FILE):
+	@mkdir -p res
+	@cd res && wget $(WAR_AND_PEACE_URL)
+
+install-res: $(HAYSTACK_FILE)
 
 run: build/search
 	@./build/search
 
-clean:
-	@rm -rf build
+.PHONY: run install-res
 
-.PHONY: run clean
+# Подключаем тестовую инфраструктуру.
+PROGRAM=search
+PROGRAM_NAME=10_string_matching
+TESTS = 00
+
+include ../../homework/common.mk

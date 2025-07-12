@@ -1,14 +1,17 @@
 # Copyright 2024 Vladislav Aleinik
-# The simplest Makefile possible.
 
 build/sum: sum.c
 	@mkdir -p build
-	gcc sum.c -Wall -Werror -o build/sum
+	@gcc sum.c -Wall -Werror -o build/sum
 
 run: build/sum
 	@./build/sum
 
-clean:
-	@rm -rf build
+.PHONY: run
 
-.PHONY: run clean
+# Подключаем тестовую инфраструктуру.
+PROGRAM=sum
+PROGRAM_NAME=07_sum
+TESTS = 00
+
+include ../../homework/common.mk

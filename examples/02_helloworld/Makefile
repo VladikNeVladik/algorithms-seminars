@@ -1,9 +1,9 @@
 # Copyright 2024 Vladislav Aleinik
-# The simplest Makefile possible.
+# Наиспростейший возможный Makefile.
 
 build/hello: hello.c
 	@mkdir -p build
-	gcc hello.c -Wall -Werror -o build/hello
+	@gcc hello.c -Wall -Werror -o build/hello
 
 run: build/hello
 	@./build/hello
@@ -11,7 +11,11 @@ run: build/hello
 python:
 	@./hello.py
 
-clean:
-	@rm -rf build
+.PHONY: run
 
-.PHONY: run clean
+# Подключаем тестовую инфраструктуру.
+PROGRAM=hello
+PROGRAM_NAME=02_helloworld
+TESTS = 00
+
+include ../../homework/common.mk

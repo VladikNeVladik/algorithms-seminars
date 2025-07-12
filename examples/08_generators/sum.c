@@ -30,7 +30,6 @@ ull_t sum(const unsigned* array, unsigned size)
 
 #ifdef SUM_GENERATOR
 
-
 ull_t sum(unsigned (*get_element)(unsigned), unsigned nmemb)
 {
     if (nmemb == 0U)

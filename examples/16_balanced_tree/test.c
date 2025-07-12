@@ -24,6 +24,9 @@ int main(void)
     // Массив ключей для повтороного поиска в дереве.
     Key_t saved[NUM_INSERTED];
 
+    // Задаём семя для генератора случайных чисел.
+    srand(100500);
+
     for (size_t iteration_i = 0U; iteration_i < NUM_INSERTED; ++iteration_i)
     {
         // Пара ключ-значение для добавления в дерево.

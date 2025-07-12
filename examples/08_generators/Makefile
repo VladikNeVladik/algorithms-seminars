@@ -25,6 +25,9 @@ CFLAGS=\
 	-std=gnu99                   \
 	-lm
 
+build/sum: sum.c
+	@# Do nothing
+
 # Different build scenarios:
 simple: sum.c
 	@mkdir -p build
@@ -43,10 +46,14 @@ cycle: sum.c
 	@gcc sum.c ${CFLAGS} -DSUM_CYCLE -o build/sum
 
 # Run scenarios:
-run: build/sum
+run:
 	@./build/sum
 
-clean:
-	@rm -rf build
+.PHONY: run
 
-.PHONY: run clean
+# Подключаем тестовую инфраструктуру.
+PROGRAM=sum
+PROGRAM_NAME=08_generators-$(FLAVOUR)
+TESTS = 00
+
+include ../../homework/common.mk

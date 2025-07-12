@@ -32,12 +32,12 @@ INCLUDES=\
 
 build/requestlist: requestlist.c $(INCLUDES)
 	@mkdir -p build res
-	gcc requestlist.c ${CFLAGS} -o build/requestlist
+	@gcc requestlist.c ${CFLAGS} -o build/requestlist
 
 test: build/requestlist
 	@./build/requestlist
 
-clean:
-	@rm -rf build
+.PHONY: create search
 
-.PHONY: create search clean
+# Подключаем тестовую инфраструктуру.
+include ../../homework/common.mk

@@ -33,14 +33,17 @@ INCLUDES=\
 
 build/test: test.c $(INCLUDES)
 	@mkdir -p build
-	gcc test.c ${CFLAGS} -o build/test
+	@mkdir -p res
+	@gcc test.c ${CFLAGS} -o build/test
 
 run: build/test
-	@mkdir -p res
 	@./build/test
 
-clean:
-	@rm -rf res
-	@rm -rf build
+.PHONY: run
 
-.PHONY: run clean
+# Подключаем тестовую инфраструктуру.
+PROGRAM=test
+PROGRAM_NAME=12_matrix_fileio
+TESTS = 00
+
+include ../../homework/common.mk

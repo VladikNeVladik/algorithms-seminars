@@ -32,7 +32,11 @@ build/sort: sort.c
 run: build/sort
 	@./build/sort
 
-clean:
-	@rm -rf build
+.PHONY: run
 
-.PHONY: run clean
+# Подключаем тестовую инфраструктуру.
+PROGRAM=sort
+PROGRAM_NAME=09_sort_lines
+TESTS = 00
+
+include ../../homework/common.mk

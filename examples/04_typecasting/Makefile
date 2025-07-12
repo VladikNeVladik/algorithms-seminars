@@ -1,14 +1,17 @@
 # Copyright 2024 Vladislav Aleinik
-# The simplest Makefile possible.
 
 build/typecast: typecast.c
 	@mkdir -p build
-	gcc typecast.c -Wall -Werror -o build/typecast
+	@gcc typecast.c -Wall -Werror -o build/typecast
 
 run: build/typecast
 	@./build/typecast
 
-clean:
-	@rm -rf build
+.PHONY: run
 
-.PHONY: run clean
+# Подключаем тестовую инфраструктуру.
+PROGRAM=typecast
+PROGRAM_NAME=04_typecasting
+TESTS = 00
+
+include ../../homework/common.mk

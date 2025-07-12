@@ -48,18 +48,15 @@ EXECUTABLE = build/64bit_arithmetics
 all: $(EXECUTABLE) $(SOURCES)
 
 $(EXECUTABLE): $(OBJECTS) Makefile
-	$(CC) $(LDFLAGS) $(OBJECTS) -o $@
+	@$(CC) $(LDFLAGS) $(OBJECTS) -o $@
 
 build/%.o: src/%.c
 	@mkdir -p build
-	$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 build/%.o: src/%.asm
 	@mkdir -p build
-	$(AS) $(ASFLAGS) $< -o $@
-
-clean:
-	rm -rf build
+	@$(AS) $(ASFLAGS) $< -o $@
 
 run: $(EXECUTABLE)
 	./$(EXECUTABLE)
@@ -95,3 +92,10 @@ disassemble:
 	objdump -M intel --disassemble=assembled_example_function --visualize-jumps=color $(EXECUTABLE)
 
 .PHONY: all clean qemu gdb
+
+# Подключаем тестовую инфраструктуру.
+PROGRAM=64bit_arithmetics
+PROGRAM_NAME=30_64bit_arithmetics
+TESTS = 00
+
+include ../../homework/common.mk

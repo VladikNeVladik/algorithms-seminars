@@ -47,18 +47,15 @@ EXECUTABLE = build/helloworld
 all: $(EXECUTABLE) $(SOURCES)
 
 $(EXECUTABLE): $(OBJECTS) Makefile
-	$(CC) $(LDFLAGS) $(OBJECTS) -o $@ -lm
+	@$(CC) $(LDFLAGS) $(OBJECTS) -o $@ -lm
 
 build/%.o: src/%.c
 	@mkdir -p build
-	$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 build/%.o: src/%.asm
 	@mkdir -p build
-	$(AS) $(ASFLAGS) $< -o $@
-
-clean:
-	rm -rf build
+	@$(AS) $(ASFLAGS) $< -o $@
 
 run: $(EXECUTABLE)
 	./$(EXECUTABLE)
@@ -87,3 +84,10 @@ gdb: $(EXECUTABLE)
 	$(GDB) $(GDB_FLAGS)
 
 .PHONY: all clean qemu gdb
+
+# Подключаем тестовую инфраструктуру.
+PROGRAM=helloworld
+PROGRAM_NAME=28_helloworld_asm
+TESTS = 00
+
+include ../../homework/common.mk

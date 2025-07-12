@@ -44,18 +44,15 @@ EXECUTABLE = build/relocs
 all: $(EXECUTABLE) $(SOURCES)
 
 $(EXECUTABLE): $(OBJECTS) Makefile
-	$(CC) $(LDFLAGS) $(OBJECTS) -o $@
+	@$(CC) $(LDFLAGS) $(OBJECTS) -o $@
 
 build/%.o: src/%.c
 	@mkdir -p build
-	$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 build/%.o: src/%.asm
 	@mkdir -p build
-	$(AS) $(ASFLAGS) $< -o $@
-
-clean:
-	rm -rf build
+	@$(AS) $(ASFLAGS) $< -o $@
 
 run: $(EXECUTABLE)
 	./$(EXECUTABLE)
@@ -76,3 +73,10 @@ gdb: $(EXECUTABLE)
 	$(GDB) $(GDB_FLAGS)
 
 .PHONY: all clean qemu gdb
+
+# Подключаем тестовую инфраструктуру.
+PROGRAM=relocs
+PROGRAM_NAME=38_relocs
+TESTS = 00
+
+include ../../homework/common.mk
