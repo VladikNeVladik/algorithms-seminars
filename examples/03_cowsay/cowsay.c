@@ -21,7 +21,7 @@ int main(void)
 {
     unsigned cowsay_length = strlen(WHAT_DOES_THE_COW_SAY);
 
-    // Print upper box line:
+    // Выводим на экран верхний ограничитель.
     putc(' ', stdout);
     for (int i = 0; i < cowsay_length; ++i)
     {
@@ -30,10 +30,10 @@ int main(void)
     putc(' ',  stdout);
     putc('\n', stdout);
 
-    // Print cow saying:
+    // Выводим фразу коровы:
     printf("<%s>\n", WHAT_DOES_THE_COW_SAY);
 
-    // Print lower box line:
+    // Выводим нижний ограничитель.
     putc(' ', stdout);
     for (int i = 0; i < cowsay_length; ++i)
     {
@@ -42,7 +42,7 @@ int main(void)
     putc(' ',  stdout);
     putc('\n', stdout);
 
-    // Print cow:
+    // Выводим в консоль корову.
     for (int cow_i = 0; cow_i < NUM_COW_ROWS; ++cow_i)
     {
         puts(COW[cow_i]);

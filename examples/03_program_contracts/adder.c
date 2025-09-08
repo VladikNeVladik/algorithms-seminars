@@ -8,7 +8,7 @@ int main(void)
 {
     short num1, num2 = 0;
 
-    // Parse program input:
+    // Производим разбор ввода в программу.
     int num_inputs = scanf("%hd\n%hd", &num1, &num2);
     if (num_inputs < 2)
     {
@@ -16,7 +16,8 @@ int main(void)
         return 1;
     }
 
-    // Cast numbers to long and check if they overflow on addition:
+    // Производим приведение типов к более широкому типу int, производим операцию в типе int,
+    // Проверяем, что результат операции поместится в результирующий тип short. 
     int num1_ext = num1;
     int num2_ext = num2;
     int sum_ext = num1_ext + num2_ext;
@@ -26,14 +27,13 @@ int main(void)
         return 1;
     }
 
-    // Perform short integer addition:
-    // NOTE: if num1 + num2 is not representable by short, a problem might arise.
-    short sum = num1 + num2;
+    // Производим сложение.
+    short sum = sum_ext;
 
-    // Print result:
+    // Выводим результат на экран.
     printf("%hd\n", sum);
 
-    // Another approach to the problem of overflow - use compiler builtins:
+    // Применяем альтернативный способ - встроенную функцию компилятора GCC.
     short rslt;
     bool error = __builtin_add_overflow(num1, num2, &rslt);
     if (error)
