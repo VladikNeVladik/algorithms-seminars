@@ -2,7 +2,7 @@
 
 build/typecast: typecast.c
 	@mkdir -p build
-	@gcc typecast.c -Wall -Werror -o build/typecast
+	@$(CC) typecast.c -Wall -Werror -o build/typecast
 
 run: build/typecast
 	@./build/typecast

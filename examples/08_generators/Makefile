@@ -31,19 +31,19 @@ build/sum: sum.c
 # Different build scenarios:
 simple: sum.c
 	@mkdir -p build
-	@gcc sum.c ${CFLAGS} -DSUM_SIMPLE -o build/sum
+	@$(CC) sum.c ${CFLAGS} -DSUM_SIMPLE -o build/sum
 
 generator: sum.c
 	@mkdir -p build
-	@gcc sum.c ${CFLAGS} -DSUM_GENERATOR -o build/sum
+	@$(CC) sum.c ${CFLAGS} -DSUM_GENERATOR -o build/sum
 
 tail: sum.c
 	@mkdir -p build
-	@gcc sum.c ${CFLAGS} -DSUM_TAIL_RECURSION -o build/sum
+	@$(CC) sum.c ${CFLAGS} -DSUM_TAIL_RECURSION -o build/sum
 
 cycle: sum.c
 	@mkdir -p build
-	@gcc sum.c ${CFLAGS} -DSUM_CYCLE -o build/sum
+	@$(CC) sum.c ${CFLAGS} -DSUM_CYCLE -o build/sum
 
 # Run scenarios:
 run:

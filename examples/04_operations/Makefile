@@ -2,7 +2,7 @@
 
 build/operations: operations.c
 	@mkdir -p build
-	@gcc operations.c -Wall -Werror -o build/operations
+	@$(CC) operations.c -Wall -Werror -o build/operations
 
 run: build/operations
 	@./build/operations

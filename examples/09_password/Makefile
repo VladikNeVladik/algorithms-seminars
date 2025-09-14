@@ -7,7 +7,7 @@ CFLAGS = \
 
 build/password: password.c
 	@mkdir -p build
-	@gcc password.c $(CFLAGS) -g -o build/password
+	@$(CC) password.c $(CFLAGS) -g -o build/password
 
 run: build/password
 	@./build/password
