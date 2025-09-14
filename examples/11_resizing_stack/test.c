@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <stdint.h>
+#include <inttypes.h>
 
 #include <time.h>
 
@@ -59,7 +60,7 @@ int main(void)
                 ret = stack_push(&stack, push_i);
                 if (ret != STACK_OK)
                 {
-                    printf("[ERROR] Unable to push element #%ld: %s\n", push_i, stack_retcode_str(ret));
+                    printf("[ERROR] Unable to push element #%" PRIu64 ": %s\n", push_i, stack_retcode_str(ret));
                     return EXIT_FAILURE;
                 }
             }
@@ -71,11 +72,11 @@ int main(void)
             double seconds = ticks_delta / CLOCKS_PER_SEC;
 
             // Печатаем время на наполнение стека элементов
-            // printf("Push[%9lu, %9lu]: %10.6lfs\n",
+            // printf("Push[%9" PRIu64 ", %9" PRIu64 "]: %10.6lfs\n",
             //     bench_i, bench_i + BENCHMARK_STEP - 1U, seconds);
 
             (void) seconds;
-            printf("Push[%9lu, %9lu]: OK\n",
+            printf("Push[%9" PRIu64 ", %9" PRIu64 "]: OK\n",
                 bench_i, bench_i + BENCHMARK_STEP - 1U);
         }
 
@@ -91,13 +92,13 @@ int main(void)
                 ret = stack_pop(&stack, &popped);
                 if (ret != STACK_OK)
                 {
-                    printf("[ERROR] Unable to pop element #%ld: %s\n", pop_i, stack_retcode_str(ret));
+                    printf("[ERROR] Unable to pop element #%" PRIu64 ": %s\n", pop_i, stack_retcode_str(ret));
                     return EXIT_FAILURE;
                 }
 
                 if (popped != pop_i - 1U)
                 {
-                    printf("[ERROR] Popped invalid element (got %lu, expected %lu)!\n", popped, pop_i - 1U);
+                    printf("[ERROR] Popped invalid element (got %" PRIu64 ", expected %" PRIu64 ")!\n", popped, pop_i - 1U);
                     return EXIT_FAILURE;
                 }
             }
@@ -109,11 +110,11 @@ int main(void)
             double seconds = ticks_delta / CLOCKS_PER_SEC;
 
             // Печатаем время на извлечение элементов из стека
-            // printf("Pop [%9lu, %9lu]: %10.6lfs\n",
+            // printf("Pop [%9" PRIu64 ", %9" PRIu64 "]: %10.6lfs\n",
             //     bench_i - 1U, bench_i - BENCHMARK_STEP, seconds);
 
             (void) seconds;
-            printf("Pop [%9lu, %9lu]: OK\n",
+            printf("Pop [%9" PRIu64 ", %9" PRIu64 "]: OK\n",
                 bench_i - 1U, bench_i - BENCHMARK_STEP);
         }
 
