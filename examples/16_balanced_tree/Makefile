@@ -31,7 +31,7 @@ INCLUDES=\
 
 build/test: test.c $(INCLUDES)
 	@mkdir -p build
-	@gcc test.c ${CFLAGS} -o build/test
+	@$(CC) test.c ${CFLAGS} -o build/test
 
 run: build/test
 	@mkdir -p res

@@ -32,7 +32,7 @@ INCLUDES=\
 
 build/requestlist: requestlist.c $(INCLUDES)
 	@mkdir -p build res
-	@gcc requestlist.c ${CFLAGS} -o build/requestlist
+	@$(CC) requestlist.c ${CFLAGS} -o build/requestlist
 
 test: build/requestlist
 	@./build/requestlist

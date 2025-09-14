@@ -30,7 +30,7 @@ HAYSTACK_FILE=res/warandpeace.txt
 
 build/search: search.c $(HAYSTACK_FILE)
 	@mkdir -p build
-	@gcc search.c ${CFLAGS} -o build/search
+	@$(CC) search.c ${CFLAGS} -o build/search
 
 $(HAYSTACK_FILE):
 	@mkdir -p res
