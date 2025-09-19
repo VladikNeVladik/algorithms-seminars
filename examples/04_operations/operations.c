@@ -30,11 +30,11 @@ char print_b(void)
 
 int main(void)
 {
-    //================//
-    // Bit operations //
-    //================//
+    //====================//
+    // Побитовые операции //
+    //====================//
 
-    // Variables used:
+    // Используемые переменные.
     uint8_t a = 10;
     uint8_t b = 23;
     uint8_t c = 2;
@@ -51,41 +51,41 @@ int main(void)
     print_bits8(c);
     printf("\n");
 
-    // Inversion:
+    // Инверсия:
     printf("~a     = ");
     print_bits8(~a);
     printf("\n");
 
-    // Bitwise OR:
+    // Побитовое ИЛИ (OR):
     printf("a  | b = ");
     print_bits8(a | b);
     printf("\n");
 
-    // Bitwise AND:
+    // Побитов И (AND):
     printf("a  & b = ");
     print_bits8(a & b);
     printf("\n");
 
-    // Bitwise XOR:
+    // Побитовое исключающее ИЛИ (XOR):
     printf("a  ^ b = ");
     print_bits8(a ^ b);
     printf("\n");
 
-    // Left shift:
+    // Сдвиг битов влево:
     printf("a << c = ");
     print_bits8(a << c);
     printf("\n");
 
-    // Right shift:
+    // Сдвиг битов вправо:
     printf("a >> c = ");
     print_bits8(a >> c);
     printf("\n");
 
     printf("\n");
 
-    //==================//
-    // Integer division //
-    //==================//
+    //=======================//
+    // Целочисленное деление //
+    //=======================//
 
     printf("+8 / +3 = %2d, +8 %% +3 = %2d\n", +8 / +3, +8 % +3);
     printf("+8 / -3 = %2d, +8 %% -3 = %2d\n", +8 / -3, +8 % -3);
@@ -94,9 +94,9 @@ int main(void)
 
     printf("\n");
 
-    //==============//
-    // Side effects //
-    //==============//
+    //==================//
+    // Побочные эффекты //
+    //==================//
 
     printf("Conditional operator return value: %c\n", true? print_a() : print_b());
 
