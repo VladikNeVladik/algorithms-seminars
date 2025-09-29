@@ -5,6 +5,7 @@ CFLAGS=\
 	-O2                          \
 	-Wall                        \
 	-Werror                      \
+	-Wno-unknown-warning-option  \
 	-Wformat-security            \
 	-Wignored-qualifiers         \
 	-Winit-self                  \
