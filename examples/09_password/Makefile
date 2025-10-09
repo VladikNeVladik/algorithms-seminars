@@ -1,9 +1,6 @@
 # Copyright 2024 Vladislav Aleinik
 
-CFLAGS = \
-	-Wall \
-	-Werror \
-	-fno-stack-protector
+CFLAGS = -fno-stack-protector
 
 build/password: password.c
 	@mkdir -p build

@@ -69,8 +69,8 @@ int main(void)
     char input_password[32U];
 
     // Считываем пароль от пользователя
-    int ret = scanf("%s", input_password);
-    VERIFY_CONTRACT(ret == 1, "ERROR: unable to input string\n");
+    char* ret = gets(input_password);
+    VERIFY_CONTRACT(ret != NULL, "ERROR: unable to input string\n");
 
     // Проверяем пароль и выполняем соответствующее действие
     if (!check_password || password_is_ok(input_password))
