@@ -8,6 +8,10 @@
 
 #include <time.h>
 
+#define COLOR_BYELLOW "\033[1;33m"
+#define COLOR_BCYAN   "\033[1;36m"
+#define COLOR_RESET   "\033[0m"
+
 //========================================//
 // Макрос для удобной проверки контрактов //
 //========================================//
@@ -360,7 +364,7 @@ int main(void)
         // Начало измеряемого отрезка времени
         clock_t ticks_start = clock();
 
-        printf("%.60s\n", algorithm_names[alg_i]);
+        printf(COLOR_BCYAN "%.60s\n" COLOR_RESET, algorithm_names[alg_i]);
 
         for (size_t word_i = 0; word_i < sizeof(needles) / sizeof(const char*); ++word_i)
         {
@@ -399,7 +403,7 @@ int main(void)
         double seconds = ticks_delta / CLOCKS_PER_SEC;
 
         (void) seconds;
-        // printf("                            %10.2lfs\r%.60s:\n", seconds, algorithm_names[alg_i]);
+        // printf(COLOR_BYELLOW "                            %10.2lfs\r%.60s:\n" COLOR_RESET, seconds, algorithm_names[alg_i]);
     }
 
     return EXIT_SUCCESS;
