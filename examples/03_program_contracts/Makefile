@@ -2,7 +2,7 @@
 
 build/adder: adder.c
 	@mkdir -p build
-	@gcc adder.c -std=c99 -Wall -Werror -o build/adder
+	@$(CC) adder.c -std=c99 -Wall -Werror -o build/adder
 
 run: build/adder
 	@./build/adder

@@ -5,6 +5,7 @@ CFLAGS=\
 	-O2                          \
 	-Wall                        \
 	-Werror                      \
+	-Wno-unknown-warning-option  \
 	-Wformat-security            \
 	-Wignored-qualifiers         \
 	-Winit-self                  \
@@ -32,11 +33,11 @@ INCLUDES=\
 
 build/create: create.c $(INCLUDES)
 	@mkdir -p build res
-	@gcc create.c ${CFLAGS} -o build/create
+	@$(CC) create.c ${CFLAGS} -o build/create
 
 build/search: search.c $(INCLUDES)
 	@mkdir -p build
-	@gcc search.c ${CFLAGS} -o build/search
+	@$(CC) search.c ${CFLAGS} -o build/search
 
 create: build/create
 	@mkdir -p res

@@ -2,7 +2,7 @@
 
 build/sum: sum.c
 	@mkdir -p build
-	@gcc sum.c -Wall -Werror -o build/sum
+	@$(CC) sum.c -Wall -Werror -o build/sum
 
 run: build/sum
 	@./build/sum

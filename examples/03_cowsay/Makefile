@@ -2,7 +2,7 @@
 
 build/cowsay: cowsay.c
 	@mkdir -p build
-	@gcc cowsay.c -std=c99 -Wall -Werror -o build/cowsay
+	@$(CC) cowsay.c -std=c99 -Wall -Werror -o build/cowsay
 
 run: build/cowsay
 	@./build/cowsay

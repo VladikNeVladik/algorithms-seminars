@@ -3,7 +3,7 @@
 
 build/hello: hello.c
 	@mkdir -p build
-	@gcc hello.c -Wall -Werror -o build/hello
+	@$(CC) hello.c -Wall -Werror -o build/hello
 
 run: build/hello
 	@./build/hello

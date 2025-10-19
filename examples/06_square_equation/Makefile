@@ -2,7 +2,7 @@
 
 build/square: square.c
 	@mkdir -p build
-	@gcc square.c -Wall -Werror -o build/square -lm
+	@$(CC) square.c -Wall -Werror -o build/square -lm
 
 run: build/square
 	@./build/square

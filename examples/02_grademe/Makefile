@@ -3,7 +3,7 @@
 
 build/grademe: grademe.c
 	@mkdir -p build
-	@gcc grademe.c -Wall -Werror -o build/grademe -lm
+	@$(CC) grademe.c -Wall -Werror -o build/grademe -lm
 
 run: build/grademe
 	@./build/grademe

@@ -5,6 +5,7 @@ CFLAGS=\
 	-O2                          \
 	-Wall                        \
 	-Werror                      \
+	-Wno-unknown-warning-option  \
 	-Wformat-security            \
 	-Wignored-qualifiers         \
 	-Winit-self                  \
@@ -32,7 +33,7 @@ INCLUDES=\
 
 build/requestlist: requestlist.c $(INCLUDES)
 	@mkdir -p build res
-	@gcc requestlist.c ${CFLAGS} -o build/requestlist
+	@$(CC) requestlist.c ${CFLAGS} -o build/requestlist
 
 test: build/requestlist
 	@./build/requestlist

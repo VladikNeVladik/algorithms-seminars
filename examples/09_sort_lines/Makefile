@@ -5,6 +5,7 @@ CFLAGS=\
 	-O2                          \
 	-Wall                        \
 	-Werror                      \
+	-Wno-unknown-warning-option  \
 	-Wformat-security            \
 	-Wignored-qualifiers         \
 	-Winit-self                  \
@@ -27,7 +28,7 @@ CFLAGS=\
 
 build/sort: sort.c
 	@mkdir -p build
-	@gcc sort.c ${CFLAGS} -o build/sort
+	@$(CC) sort.c ${CFLAGS} -o build/sort
 
 run: build/sort
 	@./build/sort

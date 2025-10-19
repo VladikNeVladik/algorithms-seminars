@@ -5,6 +5,7 @@ CFLAGS=\
 	-O2                          \
 	-Wall                        \
 	-Werror                      \
+	-Wno-unknown-warning-option  \
 	-Wformat-security            \
 	-Wignored-qualifiers         \
 	-Winit-self                  \
@@ -31,15 +32,15 @@ build/fibs: fibs.c
 # Different build scenarios:
 cycle: fibs.c
 	@mkdir -p build
-	@gcc fibs.c ${CFLAGS} -DFIBS_CYCLE -o build/fibs
+	@$(CC) fibs.c ${CFLAGS} -DFIBS_CYCLE -o build/fibs
 
 bad: fibs.c
 	@mkdir -p build
-	@gcc fibs.c ${CFLAGS} -DFIBS_BAD_RECURSION -o build/fibs
+	@$(CC) fibs.c ${CFLAGS} -DFIBS_BAD_RECURSION -o build/fibs
 
 good: fibs.c
 	@mkdir -p build
-	@gcc fibs.c ${CFLAGS} -DFIBS_GOOD_RECURSION -o build/fibs
+	@$(CC) fibs.c ${CFLAGS} -DFIBS_GOOD_RECURSION -o build/fibs
 
 # Run scenarios:
 run:
