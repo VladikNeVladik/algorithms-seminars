@@ -1,10 +1,22 @@
-avacado    192.168.0.1
-potato     192.168.0.2
-grape      192.168.0.3
-lemon      192.168.0.4
-pineapple  192.168.0.5
-banana     192.168.0.6
-cucumber   192.168.0.7
-tomato     192.168.0.8
-melon      192.168.0.9
-orange     192.168.0.10
+Write to file:
+avacado    192.168.0.10
+potato     192.168.0.9
+grape      192.168.0.8
+lemon      192.168.0.7
+apple      192.168.0.6
+banana     192.168.0.5
+tomato     192.168.0.4
+melon      192.168.0.3
+orange     192.168.0.2
+cherry     192.168.0.1
+Read from file:
+cherry     192.168.0.1
+orange     192.168.0.2
+melon      192.168.0.3
+tomato     192.168.0.4
+banana     192.168.0.5
+apple      192.168.0.6
+lemon      192.168.0.7
+grape      192.168.0.8
+potato     192.168.0.9
+avacado    192.168.0.10

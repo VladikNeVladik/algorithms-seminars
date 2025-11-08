@@ -31,26 +31,18 @@ INCLUDES=\
 	database.h \
 	utils.h
 
-build/create: create.c $(INCLUDES)
-	@mkdir -p build res
-	@$(CC) create.c ${CFLAGS} -o build/create
-
-build/search: search.c $(INCLUDES)
+build/test: test.c $(INCLUDES)
 	@mkdir -p build
-	@$(CC) search.c ${CFLAGS} -o build/search
+	@$(CC) test.c ${CFLAGS} -o build/test
 
-create: build/create
+run: build/test
 	@mkdir -p res
-	@./build/create
+	@./build/test
 
-search: build/search
-	@mkdir -p res
-	@./build/search
-
-.PHONY: create search clean
+.PHONY: run clean
 
 # Подключаем тестовую инфраструктуру.
-PROGRAM=search
+PROGRAM=test
 PROGRAM_NAME=13_database
 TESTS = 00
 
