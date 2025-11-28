@@ -19,7 +19,8 @@ cd ../11_resizing_stack            && make clean                     &&         
 cd ../12_matrix_fileio             && make clean                     &&                   make test
 cd ../13_database                  && make clean && make create      &&                   make test
 cd ../15_binary_search_tree        && make clean                     &&                   make test
-cd ../16_balanced_tree             && make clean                     &&                   make test
+cd ../16_balanced_tree             && make clean && make tree-avl    && FLAVOUR=avl       make test
+cd ../16_balanced_tree             && make clean && make tree-rb     && FLAVOUR=rb        make test
 cd ../28_helloworld_asm            && make clean                     &&                   make test
 cd ../29_arithmetic_ops            && make clean                     &&                   make test
 cd ../30_64bit_arithmetics         && make clean                     &&                   make test

@@ -4,7 +4,13 @@
 typedef uint32_t Key_t;
 typedef uint32_t Value_t;
 
-#include "tree.h"
+#ifdef TREE_AVL
+#include "tree-avl.h"
+#endif // TREE_AVL
+
+#ifdef TREE_RB
+#include "tree-rb.h"
+#endif // TREE_RB
 
 #define NUM_INSERTED      20U
 #define NUM_FULL_SEARCHES 10U

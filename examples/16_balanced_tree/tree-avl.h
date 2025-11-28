@@ -1,6 +1,6 @@
 // Copyright 2024 Vladislav Aleinik
-#ifndef HEADER_GUARD_TREE_H_INCLUDED
-#define HEADER_GUARD_TREE_H_INCLUDED
+#ifndef HEADER_GUARD_TREE_AVL_H_INCLUDED
+#define HEADER_GUARD_TREE_AVL_H_INCLUDED
 
 #include <stdbool.h>
 #include <stdint.h>
@@ -866,8 +866,8 @@ void tree_balance(Tree* tree, Node_t unbalanced_id)
             unbalanced->height = max(tree_height(tree, unbalanced->left_id), tree_height(tree, unbalanced->right_id)) + 1;
         }
 
-        tree_print(tree);
-        printf("\n");
+        // tree_print(tree);
+        // printf("\n");
         // sleep(1);
 
         // Переходим к рассмотрению родительского узла.
@@ -1143,4 +1143,4 @@ void tree_print(Tree* tree)
     tree_print_recursive(tree, root_id, 0U, state);
 }
 
-#endif // HEADER_GUARD_TREE_H_INCLUDED
+#endif // HEADER_GUARD_TREE_AVL_H_INCLUDED

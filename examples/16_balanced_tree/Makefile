@@ -27,22 +27,29 @@ CFLAGS=\
 	-lm
 
 INCLUDES=\
-	tree.h \
+	tree-avl.h \
+	tree-rb.h \
 	utils.h
 
 build/test: test.c $(INCLUDES)
+	@# Do nothing
+
+tree-avl: test.c $(INCLUDES)
 	@mkdir -p build
-	@$(CC) test.c ${CFLAGS} -o build/test
+	@$(CC) test.c ${CFLAGS} -DTREE_AVL -o build/test
+
+tree-rb: test.c $(INCLUDES)
+	@mkdir -p build
+	@$(CC) test.c ${CFLAGS} -DTREE_RB -o build/test
 
 run: build/test
-	@mkdir -p res
 	@./build/test
 
 .PHONY: run
 
 # Подключаем тестовую инфраструктуру.
 PROGRAM=test
-PROGRAM_NAME=16_balanced_tree
+PROGRAM_NAME=16_balanced_tree-$(FLAVOUR)
 TESTS = 00
 
 include ../../homework/common.mk
