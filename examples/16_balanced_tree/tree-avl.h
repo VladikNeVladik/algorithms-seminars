@@ -1048,8 +1048,7 @@ RetCode tree_remove(Tree* tree, Key_t key, Value_t* ret, bool* found)
         tree_balance(tree, selected_parent_id);
     }
     else if (selected->right_id == NULL_NODE)
-    {
-        // У найденного узла отсутствует правый дочерный узел.
+    {   // У найденного узла отсутствует правый дочерный узел.
         tree_transplant(tree, selected_id, selected->left_id);
 
         // Выполняем балансировку, начиная с изменённого поддерева.
@@ -1099,7 +1098,7 @@ RetCode tree_remove(Tree* tree, Key_t key, Value_t* ret, bool* found)
         TreeNode* left = tree_get(tree, minimum->left_id);
         left->parent_id = minimum_id;
 
-        // Производим перебалансировку с низшего застронутого узла.
+        // Производим перебалансировку с низшего затронутого узла.
         if (minimum_parent_id != selected_id)
         {   // Низшим затронутым узлом является узел с идентификатором minimum_parent_id.
             tree_balance(tree, minimum_parent_id);

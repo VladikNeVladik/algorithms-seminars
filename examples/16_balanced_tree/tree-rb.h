@@ -827,6 +827,171 @@ void tree_insert_fixup(Tree* tree, Node_t node_id)
     tree_get(tree, tree->root_id)->is_black = true;
 }
 
+//==================================================================================================
+// Функция: tree_remove_fixup
+// Назначение: Производит перебалансировку красно-чёрного дерева при вставке узла.
+//--------------------------------------------------------------------------------------------------
+// Параметры:
+// tree    (in) - красно-чёрное дерево.
+// node_id (in) - идентификатор узла, с которого требуется начать перебалансировку.
+//
+// Возвращаемое значение:
+// отсутствует
+//
+// Используемые внешние переменные:
+// отсутствуют
+//
+// Примечания:
+// - Описание алгоритма можно найти в книге Introduction to Algorithms (Cormen, Leiserson, Rivest,
+//   Stein), в части 13.4 третьего издания.
+//==================================================================================================
+void tree_remove_fixup(Tree* tree, Node_t node_id, Node_t parent_id)
+{
+    while (parent_id != NULL_NODE && (node_id == NULL_NODE || tree_get(tree, node_id)->is_black))
+    {
+        // Указатель на родительский узел.
+        TreeNode* parent = tree_get(tree, parent_id);
+
+        if (node_id == parent->left_id)
+        {   // Текущий узел является левым дочерним узлом для своего родителя.
+            /*    parent
+             *     /   \
+             *  node  sibling
+             */
+            // Идентификатор братского узла для текущего узла.
+            // Т.к. на правом и левом путях кол-во чёрных узлов одинаковое, то этот узел ненулевой.
+            Node_t sibling_id = parent->right_id;
+            // Братский узел для текущего узла.
+            TreeNode* sibling = tree_get(tree, sibling_id);
+
+            if (!sibling->is_black)
+            {   // Братский узел является красным.
+                // Перекрашиваем узлы.
+                sibling->is_black = true;
+                parent->is_black = false;
+
+                // Производим поворот.
+                tree_rotate_left(tree, parent_id);
+                // Обновляем братский узел.
+                sibling_id = parent->right_id;
+                sibling = tree_get(tree, sibling_id);
+
+                tree_print(tree);
+                printf("\n");
+                sleep(1);
+            }
+
+            if ((sibling->left_id  == NULL_NODE || tree_get(tree, sibling->left_id )->is_black) &&
+                (sibling->right_id == NULL_NODE || tree_get(tree, sibling->right_id)->is_black))
+            {   // Оба дочерних узла братского узла чёрные.
+                // Раскрашиваем братский узел в красный цвет.
+                sibling->is_black = false;
+                // Переходим к обработке поворотов вокруг родительского узла.
+                node_id = parent_id;
+            }
+            else
+            {   // У братского узла есть красный дочерний узел.
+                if (sibling->right_id == NULL_NODE || tree_get(tree, sibling->right_id)->is_black)
+                {   // Правый племянник отсутствует или чёрный.
+                    // Перекрашиваем узлы дерева.
+                    tree_get(tree, sibling->left_id)->is_black = true;
+                    sibling->is_black = false;
+
+                    // Производим поворот.
+                    tree_rotate_right(tree, sibling_id);
+                    // Обновляем братский узел.
+                    sibling_id = parent->right_id;
+                    sibling = tree_get(tree, sibling_id);
+                }
+
+                // Продолжаем перекрашивать.
+                sibling->is_black = parent->is_black;
+                parent->is_black = true;
+                tree_get(tree, sibling->right_id)->is_black = true;
+
+                tree_rotate_left(tree, parent_id);
+                // Завершаем все повороты.
+                node_id = tree->root_id;
+            }
+        }
+        else
+        {   // Текущий узел является правым дочерним узлом для своего родителя.
+            /*    parent
+             *     /   \
+             *  sibling  node
+             */
+            // Идентификатор братского узла для текущего узла.
+            // Т.к. на правом и левом путях кол-во чёрных узлов одинаковое, то этот узел ненулевой.
+            Node_t sibling_id = parent->right_id;
+            // Братский узел для текущего узла.
+            TreeNode* sibling = tree_get(tree, sibling_id);
+
+            if (!sibling->is_black)
+            {   // Братский узел является красным.
+                // Перекрашиваем узлы.
+                sibling->is_black = true;
+                parent->is_black = false;
+
+                // Производим поворот.
+                tree_rotate_right(tree, parent_id);
+                // Обновляем братский узел.
+                sibling_id = parent->left_id;
+                sibling = tree_get(tree, sibling_id);
+
+                tree_print(tree);
+                printf("\n");
+                sleep(1);
+            }
+
+            if ((sibling->right_id == NULL_NODE || tree_get(tree, sibling->right_id)->is_black) &&
+                (sibling->left_id  == NULL_NODE || tree_get(tree, sibling->left_id )->is_black))
+            {   // Оба дочерних узла братского узла чёрные.
+                // Раскрашиваем братский узел в красный цвет.
+                sibling->is_black = false;
+                // Переходим к обработке поворотов вокруг родительского узла.
+                node_id = parent_id;
+            }
+            else
+            {   // У братского узла есть красный дочерний узел.
+                if (sibling->left_id == NULL_NODE || tree_get(tree, sibling->left_id)->is_black)
+                {   // Левый племянник отсутствует или чёрный.
+                    // Перекрашиваем узлы дерева.
+                    tree_get(tree, sibling->right_id)->is_black = true;
+                    sibling->is_black = false;
+
+                    // Производим поворот.
+                    tree_rotate_left(tree, sibling_id);
+                    // Обновляем братский узел.
+                    sibling_id = parent->left_id;
+                    sibling = tree_get(tree, sibling_id);
+                }
+
+                // Продолжаем перекрашивать.
+                sibling->is_black = parent->is_black;
+                parent->is_black = true;
+                tree_get(tree, sibling->left_id)->is_black = true;
+
+                tree_rotate_right(tree, parent_id);
+                // Завершаем все повороты.
+                node_id = tree->root_id;
+            }
+        }
+
+        parent_id = tree_get(tree, node_id)->parent_id;
+
+        tree_print(tree);
+        printf("\n");
+        sleep(1);
+    }
+
+    // Раскрашиваем последний узел.
+    tree_get(tree, node_id)->is_black = true;
+
+    tree_print(tree);
+    printf("\n");
+    sleep(1);
+}
+
 //============================//
 // Пользовательский интерфейс //
 //============================//
@@ -877,7 +1042,7 @@ RetCode tree_search(Tree* tree, Key_t key, Value_t* res, bool* found)
 // Назначение: Выставляет значение в дереве по ключу.
 //--------------------------------------------------------------------------------------------------
 // Параметры:
-// tree  (in) - бинарное дерево поиска.
+// tree  (in) - красно-чёрное дерево.
 // key   (in) - ключ, по которому производится поиск значения.
 // value (in) - новое значение для заданного ключа.
 //
@@ -947,6 +1112,127 @@ RetCode tree_set(Tree* tree, Key_t key, Value_t value)
     // Производим перебалансировку дерева.
     tree_insert_fixup(tree, allocated_id);
 
+    return RET_OK;
+}
+
+//==================================================================================================
+// Функция: tree_remove
+// Назначение: Удаляет ключ из дерева с возвратом значения.
+//--------------------------------------------------------------------------------------------------
+// Параметры:
+// tree  (in)  - красно-чёрное дерево.
+// key   (in)  - ключ, по которому производится удаление значения.
+// ret   (out) - значение для ключа.
+// found (out) - флаг успешности поиска ключа в дереве.
+//
+// Возвращаемое значение:
+// код возврата.
+//
+// Используемые внешние переменные:
+// отсутствуют
+//
+// Примечания:
+// отсутствуют
+//==================================================================================================
+RetCode tree_remove(Tree* tree, Key_t key, Value_t* ret, bool* found)
+{
+    // Производим поиск по ключу.
+    Node_t selected_parent_id = NULL_NODE;
+    Node_t selected_id = tree_search_node(tree, key, &selected_parent_id);
+
+    if (selected_id == NULL_NODE)
+    {   // В случае отсутствия ключа в дереве возвращаемся из функции.
+        *found = false;
+        return RET_OK;
+    }
+
+    // Узел, найденный по ключу.
+    TreeNode* selected = tree_get(tree, selected_id);
+    // Изначальный цвет самого нижнего модифицированного узла в дереве. 
+    bool modified_node_was_black = selected->is_black;
+    // Идентификатор узла, с которого будет начинаться перебалансировка.
+    Node_t rebalance_node_id;
+    // Идентификатор родительского узла для удаляемого узла.
+    Node_t rebalance_parent_id = selected_parent_id;
+
+    if (selected->left_id == NULL_NODE)
+    {   // У найденного узла отсутствует левый дочерный узел.
+        tree_transplant(tree, selected_id, selected->right_id);
+
+        // Будем выполнять балансировку с правого поддерева.
+        rebalance_node_id = selected->right_id;
+    }
+    else if (selected->right_id == NULL_NODE)
+    {   // У найденного узла отсутствует правый дочерный узел.
+        tree_transplant(tree, selected_id, selected->left_id);
+
+        // Будем выполнять балансировку с левого поддерева.
+        rebalance_node_id = selected->left_id;
+    }
+    else
+    {   // Идентификатор узла с минимальным ключом в правом поддереве.
+        Node_t minimum_id = tree_minimum(tree, selected->right_id);
+        // Узел с минимальным ключом в правом поддереве.
+        TreeNode* minimum = tree_get(tree, minimum_id);
+        // Правый дочерний узел для узла с минимальным ключом.
+        Node_t t2_id = minimum->right_id;
+        // s = selected_id
+        // m = minimum_id
+        /*   s     >
+         *  / \    >   m
+         * T1 ...  >  / \
+         *    /    > T1 ...
+         *   m     >    /
+         *    \    >   T2
+         *     T2  >
+         */
+
+        // Т.к. минимум ниже предыдущего узла, то балансировка будет идти с него.
+        modified_node_was_black = minimum->is_black;
+        rebalance_node_id = t2_id;
+
+        if (minimum->parent_id == selected_id)
+        {
+            rebalance_parent_id = minimum_id;
+        }
+        else
+        {   // Узел minimum не является правым дочерним узлом для узла selected.
+            // Перевязываем поддерево T2 на место узла с минимальным ключом.
+            tree_transplant(tree, minimum_id, t2_id);
+
+            // Связываем узел minimum с правым дочерним узлом узла selected.
+            minimum->right_id = selected->right_id;
+            TreeNode* right = tree_get(tree, minimum->right_id);
+            right->parent_id = minimum_id;
+        }
+
+        // Перевязываем узел minimum на место узла selected.
+        tree_transplant(tree, selected_id, minimum_id);
+
+        // Связываем узел minimum с левым дочерним узлом узла selected.
+        minimum->left_id = selected->left_id;
+        TreeNode* left = tree_get(tree, minimum->left_id);
+        left->parent_id = minimum_id;
+
+        // Устанавливаем цвет узла minimum равным цвету узла selected.
+        minimum->is_black = selected->is_black;
+    }
+
+    tree_print(tree);
+    printf("\n");
+    sleep(1);
+
+    if (modified_node_was_black)
+    {   // Был удалён (перемещён и перекрашен) чёрный узел.
+        tree_remove_fixup(tree, rebalance_node_id, rebalance_parent_id);
+    }
+
+    // Возвращаем значение из удаляемого узла.
+    *ret = selected->value;
+
+    tree_node_free(tree, selected_id);
+
+    *found = true;
     return RET_OK;
 }
 

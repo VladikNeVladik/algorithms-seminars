@@ -69,35 +69,35 @@ int main(void)
         }
     }
 
-    // for (size_t saved_i = 0U; saved_i < NUM_INSERTED; ++saved_i)
-    // {
-    //     Key_t search_key = saved[saved_i];
-    //     Value_t removed_value;
+    for (size_t saved_i = 0U; saved_i < NUM_INSERTED; ++saved_i)
+    {
+        Key_t search_key = saved[saved_i];
+        Value_t removed_value;
 
-    //     printf("===========\n");
-    //     printf("REMOVE[%03d]\n", search_key);
-    //     printf("===========\n\n");
+        printf("===========\n");
+        printf("REMOVE[%03d]\n", search_key);
+        printf("===========\n\n");
 
-    //     bool removed;
-    //     ret = tree_remove(&search_db, search_key, &removed_value, &removed);
-    //     verify_contract(ret == RET_OK, "Unable to remove tree element\n");
-    //     verify_contract(removed,
-    //         "[TREE DELETION] Element not found\n");
-    //     verify_contract(search_key == removed_value,
-    //         "[TREE DELETION] Found unexpected value\n");
-    // }
+        bool removed;
+        ret = tree_remove(&search_db, search_key, &removed_value, &removed);
+        verify_contract(ret == RET_OK, "Unable to remove tree element\n");
+        verify_contract(removed,
+            "[TREE DELETION] Element not found\n");
+        verify_contract(search_key == removed_value,
+            "[TREE DELETION] Found unexpected value\n");
+    }
 
-    // for (size_t saved_i = 0U; saved_i < NUM_INSERTED; ++saved_i)
-    // {
-    //     Key_t search_key = saved[saved_i];
-    //     Value_t found_value;
+    for (size_t saved_i = 0U; saved_i < NUM_INSERTED; ++saved_i)
+    {
+        Key_t search_key = saved[saved_i];
+        Value_t found_value;
 
-    //     bool found;
-    //     ret = tree_search(&search_db, search_key, &found_value, &found);
-    //     verify_contract(ret == RET_OK, "Unable to search for tree element\n");
-    //     verify_contract(!found,
-    //         "[TREE FAIL SEARCH] Found spurious element\n");
-    // }
+        bool found;
+        ret = tree_search(&search_db, search_key, &found_value, &found);
+        verify_contract(ret == RET_OK, "Unable to search for tree element\n");
+        verify_contract(!found,
+            "[TREE FAIL SEARCH] Found spurious element\n");
+    }
 
     // Освобождаем ресурсы дерева.
     tree_free(&search_db);
