@@ -5,6 +5,9 @@ extern io_print_udec, io_get_udec, io_print_string, io_newline
 section .text
 global main
 main:
+    mov ebp, esp; for correct debugging
+    ; Указатель на стековый фрейм необходим для корректной работы отладчика. 
+
     ;====================;
     ; Операции сравнения ;
     ;====================;

@@ -9,6 +9,9 @@ EXIT_FAILURE  equ     1
 section .text
 global main
 main:
+    mov ebp, esp; for correct debugging
+    ; Указатель на стековый фрейм необходим для корректной работы отладчика. 
+
     ; Вводим размер массива.
     mov     eax, str_enter_size
     call    io_print_string

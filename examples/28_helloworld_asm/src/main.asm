@@ -8,6 +8,9 @@ extern io_print_dec, io_print_hex, io_get_dec, io_print_string, io_newline
 section .text
 global main
 main:
+    mov ebp, esp; for correct debugging
+    ; Указатель на стековый фрейм необходим для корректной работы отладчика. 
+
     ; Вывод строки "Hello, world!"
     mov eax, hello ; eax = hello
     call io_print_string

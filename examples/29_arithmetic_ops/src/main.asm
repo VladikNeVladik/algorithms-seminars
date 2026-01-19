@@ -24,6 +24,9 @@ sshifted:   dd 10d
 section .text
 global main
 main:
+    mov ebp, esp; for correct debugging
+    ; Указатель на стековый фрейм необходим для корректной работы отладчика. 
+
     ; Вызов кода на C для сравнения результата.
     call assembled_example_function
 

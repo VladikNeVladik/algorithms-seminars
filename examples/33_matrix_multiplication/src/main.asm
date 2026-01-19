@@ -26,6 +26,9 @@ ebx_tmp     resd 1
 section .text
 global main
 main:
+    mov ebp, esp; for correct debugging
+    ; Указатель на стековый фрейм необходим для корректной работы отладчика. 
+
     ; Дополнительно вызываем функцию для сравнения алгоритмов перемножения матриц.
     ; Выравнивание стека = "нам повезёт!".
     ; call compare_matrix_multiplication_time
