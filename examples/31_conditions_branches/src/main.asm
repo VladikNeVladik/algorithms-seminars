@@ -8,6 +8,34 @@ main:
     mov ebp, esp; for correct debugging
     ; Указатель на стековый фрейм необходим для корректной работы отладчика. 
 
+    ;===================;
+    ; Вычисление модуля ;
+    ;===================;
+
+    ; Задача #1: вычислить |eax| при помощи условного вычисления.
+    mov eax, dword [s32_a]
+
+    ; ebx = -eax
+    mov ebx, 0
+    sub ebx, eax
+
+    cmp eax, 0
+    cmovl eax, ebx
+
+    mov dword [s32_b], eax
+
+    ; Задача #2: вычислить |eax| при помощи инструкции SAR.
+
+    mov eax, dword [s32_a]
+    mov ebx, eax
+    sar ebx, 31 ; 11111111 (-1) or 00000000 (0)
+
+    shl ebx, 1   ; -2 или 0
+    imul ebx, eax ; -2*eax или 0
+    add ebx, eax  ; -eax или +eax
+
+    mov dword [s32_b], ebx
+
     ;====================;
     ; Операции сравнения ;
     ;====================;
@@ -92,3 +120,6 @@ overflowstr:    db `Detected overflow!`, 0xA, 0
 section .data
 u32_a   dd      10
 u32_b   dd      15
+
+s32_a   dd      -204
+s32_b   dd      0

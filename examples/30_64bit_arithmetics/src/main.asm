@@ -90,45 +90,12 @@ main:
     ; Print result:
     call io_print_dec
 
-    ;===================;
-    ; Вычисление модуля ;
-    ;===================;
-
-    ; Задача #1: вычислить |eax| при помощи условного вычисления.
-    mov eax, dword [s32_c]
-
-    ; ebx = -eax
-    mov ebx, 0
-    sub ebx, eax
-
-    cmp eax, 0
-    cmovl eax, ebx
-
-    ; Задача #2: вычислить |eax| при помощи инструкции SAR
-
-    mov ebx, eax
-    sar ebx, 31 ; 11111111 (-1) or 00000000 (0)
-
-    shl ebx, 1   ; -2 или 0
-    imul ebx, eax ; -2*eax или 0
-    add ebx, eax  ; -eax или +eax
-
     xor eax, eax
     ret
 
 section .data
 u64_a:     dq 0x0123456789ABCDEF
 u64_b:     dq 0x1010101010101010
-
-s32_a:     dd -2
-s32_b:     dd -2
-s32_c:     dd 0
-s32_d:     dd 0
-
-u32_a:     dd 2
-u32_b:     dd 2
-u32_c:     dd 0
-u32_d:     dd 0
 
 cmp_pos:    dd +1
 cmp_zer:    dd 0
