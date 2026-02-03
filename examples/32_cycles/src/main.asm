@@ -94,7 +94,7 @@ main:
     mov eax, ebx
     mov ecx, 8
 
-.loop_conevert_hex2char:
+.loop_convert_hex2char:
     ; [EDX:EAX] := Число для преобразования в 16-ричную систему.
     xor edx, edx
     mov ebx, 16
@@ -106,7 +106,7 @@ main:
     mov dl, byte [hex2char + edx]
     mov byte [resstr + ecx - 1], dl
 
-    loop .loop_conevert_hex2char
+    loop .loop_convert_hex2char
 
     ; Выводим результат операции.
     mov eax, str_max_value_is

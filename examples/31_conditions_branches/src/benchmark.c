@@ -16,32 +16,38 @@ void example_conditionals(void)
     static uint32_t u32_a, u32_b;
     static  int32_t s32_c, s32_d;
 
+    // Пример #1.
     if (u32_a > u32_b)
     {
         return;
     }
 
+    // Пример #2.
     if (u32_a != u32_b)
     {
         return;
     }
 
-    if (u32_a <= u32_b && u32_a >= u32_b)
+    // Пример #3.
+    if (u32_a <= u32_b && s32_c >= s32_d)
     {
         return;
     }
 
+    // Пример #4.
     if (s32_c == s32_d)
     {
         return;
     }
 
+    // Пример #5.
     if (s32_c > s32_d)
     {
         return;
     }
 
-    if (s32_c >= s32_d || s32_c > s32_d)
+    // Пример #6.
+    if (s32_c >= s32_d || u32_a > u32_b)
     {
         return;
     }
