@@ -1,5 +1,3 @@
-# Copyright 2024 Vladislav Aleinik
-
 #===============================#
 # List of tests for the problem #
 #===============================#

@@ -1,3 +1,4 @@
+; Copyright 2025 Vladislav Aleinik
 bits 32
 
 extern io_print_udec, io_print_hex, io_get_udec, io_print_string, io_newline

@@ -1,3 +1,4 @@
+; Copyright 2025 Vladislav Aleinik
 bits 32
 
 extern io_get_udec, io_get_char

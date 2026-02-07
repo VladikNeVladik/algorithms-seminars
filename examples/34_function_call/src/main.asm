@@ -1,3 +1,4 @@
+; Copyright 2025 Vladislav Aleinik
 bits 32
 
 extern io_print_hex, io_print_char, io_print_string, io_newline

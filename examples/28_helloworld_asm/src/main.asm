@@ -1,3 +1,4 @@
+; Copyright 2025 Vladislav Aleinik
 bits 32
 
 ; Директива extern обозначает внешние символы.
