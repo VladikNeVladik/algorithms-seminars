@@ -4,17 +4,18 @@
 
 #include <stdint.h>
 
-// Задание: изучите бинарный код этой функции при помощи дизассемблера.
-void example_loop(void)
-{
-    static uint32_t arr[10U];
+int x = 0, y = 0;
 
-    uint32_t max = 0U;
-    for (uint32_t i = 0; i < 10U; i++)
-    {
-        if (max < arr[i])
-        {
-            max = arr[i];
-        }
-    }
+int array0[4][4];
+int* array1[4];
+int** array2;
+
+// Задание: изучите бинарный код этой функции при помощи дизассемблера.
+void example_arrays_vs_pointers(void)
+{
+    array0[x][y] = 1;
+
+    array1[x][y] = 1;
+
+    array2[x][y] = 1;
 }
