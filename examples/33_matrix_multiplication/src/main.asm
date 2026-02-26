@@ -5,14 +5,17 @@ extern io_print_hex, io_print_char, io_print_string, io_newline
 extern compare_matrix_multiplication_time
 
 ; Constants:
-MATRIX_SIZE     equ    32 ;   4 KB
-; MATRIX_SIZE     equ    64 ;  16 KB
-; MATRIX_SIZE     equ   128 ;  64 KB
-; MATRIX_SIZE     equ   256 ; 256 KB  0,03 с
-; MATRIX_SIZE     equ   512 ;   1 MB  0,22 с
-; MATRIX_SIZE     equ  1024 ;   4 MB  2,44 с
-; MATRIX_SIZE     equ  2048 ;  16 MB 64,07 с
-; MATRIX_SIZE     equ  4096 ;  64 MB ????? с
+MATRIX_SIZE     equ    32 ;    4 KB
+; MATRIX_SIZE     equ    64 ;   16 KB
+; MATRIX_SIZE     equ   128 ;   64 KB
+; MATRIX_SIZE     equ   256 ;  256 KB  0,03 с
+; MATRIX_SIZE     equ   400 ;  625 KB  0,06 с
+; MATRIX_SIZE     equ   512 ;    1 MB  0,22 с
+; MATRIX_SIZE     equ   800 ; 2.44 MB  0,22 с
+; MATRIX_SIZE     equ  1024 ;    4 MB  2,44 с
+; MATRIX_SIZE     equ  1600 ; 9.76 MB  2,44 с
+; MATRIX_SIZE     equ  2048 ;   16 MB 64,07 с
+; MATRIX_SIZE     equ  4096 ;   64 MB   612 с
 
 ; Размещаем матрицы в секции .bss (секция для неинициализированных данных)
 section .bss
