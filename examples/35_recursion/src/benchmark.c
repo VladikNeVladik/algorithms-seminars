@@ -5,19 +5,20 @@
 #include <stdint.h>
 #include <stdio.h>
 
-// Expect program to be linked with definition of macro functions:
-int      io_get_dec(void);
-unsigned io_get_hex(void);
+unsigned isodd(unsigned n);
 
-void io_print_dec(int v);
-void io_print_hex(unsigned v);
+unsigned iseven(unsigned n)
+{
+    return (n == 0)? 1 : isodd(n - 1);
+}
 
-void io_print_string(const char *s);
-
-void io_newline(void);
+unsigned isodd(unsigned n)
+{
+    return (n == 0)? 0 : iseven(n - 1);
+}
 
 // NOTE: disassemble compiled executable of this function
-void example_helloworld(void)
+void test(void)
 {
-    printf("Hello, world!\n");
+    printf("%d\n", iseven(10));
 }

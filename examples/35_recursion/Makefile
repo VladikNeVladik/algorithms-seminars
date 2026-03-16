@@ -10,9 +10,17 @@ GDB = gdb
 # Compiler/linker flags
 #-----------------------
 
+# Also try -fomit-frame-pointer
+
 CFLAGS = \
 	-m32 \
 	-Wfatal-errors \
+	-fcf-protection=none \
+	-fno-stack-protector \
+	-O2 \
+	-foptimize-sibling-calls \
+	-fno-plt \
+	-fno-pic \
 	-no-pie \
 	-g
 
@@ -24,6 +32,8 @@ ASFLAGS = \
 LDFLAGS = \
 	-m32 \
 	-no-pie \
+	-fno-plt \
+	-fno-pic \
 	-z noexecstack \
 	-g
 
