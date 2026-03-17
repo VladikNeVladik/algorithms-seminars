@@ -10,14 +10,14 @@ GDB = gdb
 # Compiler/linker flags
 #-----------------------
 
-# Also try -fomit-frame-pointer
+# Also try -fno-omit-frame-pointer
 
 CFLAGS = \
 	-m32 \
 	-Wfatal-errors \
 	-fcf-protection=none \
 	-fno-stack-protector \
-	-O2 \
+	-O1 \
 	-foptimize-sibling-calls \
 	-fno-plt \
 	-fno-pic \
