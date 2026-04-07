@@ -33,8 +33,8 @@ printer:
 ;==============;
 
 section .text
-%define     num_hi  dword [ebp -  8]
-%define     num_lo  dword [ebp - 12]
+%define     num_hi  dword [ebp - 4]
+%define     num_lo  dword [ebp - 8]
 global main
 main:
     ; Учитываем выравнивание стека в инструкции enter

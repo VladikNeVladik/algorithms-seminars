@@ -87,7 +87,7 @@ global apply
 %define     arglist_moved   dword [ebp - 16]
 apply:
     ; Создаём стековый фрейм.
-    FUNCTION_PROLOGUE 16
+    enter   16, 0
     ; Сохраняем регистры на стеке.
     mov     tmp_ebx, ebx
     mov     tmp_esi, esi
@@ -151,8 +151,8 @@ apply:
     mov     ebx, tmp_ebx
     mov     esi, tmp_esi
     mov     edi, tmp_edi
-    ; Восстанваливаем состояние стека до вызова функции.
-    FUNCTION_EPILOGUE
+    ; Восстанавливаем состояние стека до вызова функции.
+    leave
     ; Возвращаемся из процедуры.
     ret
 
@@ -179,7 +179,7 @@ global main
 %define     array_size  dword [ebp - 16]
 %define     array_ptr   dword [ebp - 20]
 main:
-    FUNCTION_PROLOGUE 20
+    enter   20, 0
     mov     tmp_ebx, ebx
     mov     tmp_esi, esi
     mov     tmp_edi, edi
@@ -259,7 +259,8 @@ main:
     mov     ebx, tmp_ebx
     mov     esi, tmp_esi
     mov     edi, tmp_edi
-    FUNCTION_EPILOGUE
+    leave
+
     xor     eax, eax
     ret
 
