@@ -75,7 +75,7 @@ verify-input-program:
 #=======#
 
 LIBMAIN_SOURCES = \
-	../../macro-control.c \
+	../../../macro-control.c \
 	main.asm
 
 LIBMAIN_OBJECTS = \
@@ -149,7 +149,7 @@ build/%.ans.memory: tests/%.dat $(PROGRAM_BIN) FORCE
 # Build scripts
 #---------------
 
-build/macro-control.o: ../../macro-control.c
+build/macro-control.o: ../../../macro-control.c
 	@mkdir -p build
 	$(CC) $(CFLAGS) -c $< -o $@
 

@@ -18,6 +18,7 @@ CFLAGS = \
 	-fno-plt \
 	-fno-pic \
 	-no-pie \
+	-O3 \
 	-I include
 
 OBJDUMP_FLAGS = 		\
@@ -32,7 +33,7 @@ OBJDUMP_FLAGS = 		\
 tree-ops:
 	@mkdir -p build
 	@$(CC) $(CFLAGS) src/tree-ops.c -o build/tree-ops
-	@objdump build/tree-ops -d $(OBJDUMP_FLAGS) > build/tree-ops.asm
-	@$(CC) -S $(CFLAGS) -masm=intel src/tree-ops.c -o build/tree-ops-another.asm
+	@objdump build/tree-ops -d $(OBJDUMP_FLAGS) > build/tree-ops-objdump.asm
+	@$(CC) -S $(CFLAGS) -masm=intel src/tree-ops.c -o build/tree-ops-compiler.asm
 
 include ../../homework/common.mk
