@@ -12,9 +12,13 @@ GDB = gdb
 
 CFLAGS = \
 	-m32 \
-	-Wfatal-errors \
+	-fcf-protection=none \
+	-fno-stack-protector \
+	-fno-plt \
+	-fno-pic \
 	-no-pie \
-	-g \
+	-I include \
+	-g
 
 ASFLAGS = \
 	-f elf32 \
@@ -23,6 +27,10 @@ ASFLAGS = \
 
 LDFLAGS = \
 	-m32 \
+	-fcf-protection=none \
+	-fno-stack-protector \
+	-fno-plt \
+	-fno-pic \
 	-no-pie \
 	-z noexecstack \
 	-g
@@ -32,7 +40,8 @@ LDFLAGS = \
 #-------
 
 SOURCES = \
-	src/main.asm
+	src/main.asm \
+	src/benchmark.c
 
 OBJECTS_HALFWAY_DONE = $(SOURCES:src/%.c=build/%.o)
 OBJECTS              = $(OBJECTS_HALFWAY_DONE:src/%.asm=build/%.o)
