@@ -1,4 +1,4 @@
-extern void func();
+void func();
 
 char* buf = "Hello, world!\n";
 
