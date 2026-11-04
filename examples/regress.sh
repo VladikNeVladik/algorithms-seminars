@@ -1,5 +1,5 @@
-cd 02_grademe                      && make clean                     &&                   make test
-cd ../02_helloworld                && make clean                     &&                   make test
+cd 01_grademe                      && make clean                     &&                   make test
+cd ../01_helloworld                && make clean                     &&                   make test
 cd ../03_cowsay                    && make clean                     &&                   make test
 cd ../03_program_contracts         && make clean                     &&                   make test
 cd ../04_operations                && make clean                     &&                   make test
