@@ -11,7 +11,7 @@ run: build/sum
 
 # Подключаем тестовую инфраструктуру.
 PROGRAM=sum
-PROGRAM_NAME=07_sum
+PROGRAM_NAME=05_sum
 TESTS = 00
 
 include ../../homework/common.mk
