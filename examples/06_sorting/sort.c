@@ -163,19 +163,19 @@ void librarysort(int* array, uint32_t size)
 // Возвращает индекс родительского узла для узла index.
 uint32_t parent(uint32_t index)
 {
-    return index/2;
+    return (index + 1)/2 - 1;
 }
 
 // Возвращает индекс левого дочернего узла для узла index.
 uint32_t left(uint32_t index)
 {
-    return 2*index;
+    return 2*index + 1;
 }
 
 // Возвращает индекс правого дочернего узла для узла index.
 uint32_t right(uint32_t index)
 {
-    return 2*index + 1;
+    return 2*index + 2;
 }
 
 // Переносит узел из корня кучи в её лист,
@@ -221,7 +221,8 @@ void heapsort(int* array, uint32_t size)
     // Строим Max-кучу из всего массива.
     build_max_heap(array, size);
 
-    // Превращаем массив в Max-кучу, при этом поддерживая Max-кучу в начале массива.
+    // Превращаем массив в Max-кучу, при этом поддерживая
+    // Max-кучу в начале массива.
     for (uint32_t index = size - 1U; index >= 1U; --index)
     {
         swap(&array[0], &array[index]);
